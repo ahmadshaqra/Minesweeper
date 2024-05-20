@@ -14,5 +14,8 @@
 // declaring constants
 const std::string LINE = " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
 const std::string TITLE = "                    Minesweeper                    \n";
+const int ROWS = 10;
+const int COLUMNS = 10;
+const int MINES = 10;
 
 #endif //MINESWEEPER_CONSTANTS_H
