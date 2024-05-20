@@ -12,16 +12,7 @@
 #include <iostream>
 #include <string>
 
-// declaring constants
-const std::string LINE = " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
-const std::string TITLE = "                    Minesweeper                    \n";
-
-// declaring helper functions
-void wait();
-void clearScreen();
-void displayTitle();
-std::string getString(std::string prompt);
-int getInteger(std::string prompt, int min, int max);
-char getCharacter(std::string prompt);
+//including classes
+#include <Utility.h>
 
 #endif //MINESWEEPER_MAIN_H
