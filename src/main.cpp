@@ -9,16 +9,7 @@
 
 int main() {
 
-    // testing utility class
-    Utility::displayTitle();
-    std::string string = Utility::getString("  Enter String: ");
-    std::cout << "  " << string << "\n\n";
-    int integer = Utility::getInteger("  Enter Integer: ");
-    std::cout << "  " << integer << "\n\n";
-    char character = Utility::getCharacter("  Enter Character: ");
-    std::cout << "  " << character << "\n";
-    Utility::wait();
-    Utility::clearScreen();
+    // placeholder code
     Utility::displayTitle();
     std::cout << "  Hello world!\n";
     Utility::wait();
