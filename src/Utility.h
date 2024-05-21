@@ -10,20 +10,19 @@
 
 // including modules
 #include <iostream>
-#include <string>
+#include <cmath>
+
+// including classes
 #include <Constants.h>
 
-class Utility {
-
-public:
-
-    // class methods
-    static void wait();
-    static void clearScreen();
-    static void displayTitle();
-    static std::string getString(const std::string& prompt);
-    static int getInteger(const std::string& prompt);
-    static char getCharacter(const std::string& prompt);
-};
+// declaring functions
+void wait();
+void clearScreen();
+void displayTitle();
+std::string getString(const std::string& prompt);
+int getInteger(const std::string& prompt);
+char getCharacter(const std::string& prompt);
+std::string getPadding(int elementSize);
+int getRandomInteger(int min, int max);
 
 #endif //MINESWEEPER_UTILITY_H

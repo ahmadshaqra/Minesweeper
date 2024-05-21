@@ -7,24 +7,20 @@
 
 #include "Utility.h"
 
-/**************************************************
-    CLASS METHODS
- **************************************************/
-
-void Utility::wait() {
-    std::cout << "\n  ";
+void wait() {
+    std::cout << '\n' << getPadding(31);
     system("pause");
 }
 
-void Utility::clearScreen() {
+void clearScreen() {
     system("cls");
 }
 
-void Utility::displayTitle() {
-    std::cout << LINE << TITLE << LINE;
+void displayTitle() {
+    std::cout << LINE << getPadding(TITLE.size()) << TITLE << '\n' << LINE;
 }
 
-std::string Utility::getString(const std::string& prompt) {
+std::string getString(const std::string& prompt) {
     std::string userInput;
     while (userInput.empty()) {
         std::cout << prompt;
@@ -33,7 +29,7 @@ std::string Utility::getString(const std::string& prompt) {
     return userInput;
 }
 
-int Utility::getInteger(const std::string& prompt) {
+int getInteger(const std::string& prompt) {
     std::string userInput;
     bool isNumeric = false;
     while (!isNumeric) {
@@ -48,10 +44,18 @@ int Utility::getInteger(const std::string& prompt) {
     return stoi(userInput);
 }
 
-char Utility::getCharacter(const std::string& prompt) {
+char getCharacter(const std::string& prompt) {
     char userInput = ' ';
     while (!isalpha(userInput)) {
         userInput = getString(prompt)[0];
     }
     return toupper(userInput);
+}
+
+std::string getPadding(int elementSize) {
+    return std::string(int(floor((LINE.size() - 2 - elementSize) / 2)) + 1, ' ');
+}
+
+int getRandomInteger(int min, int max) {
+    return rand() % (max - min + 1) + min;
 }

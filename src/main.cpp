@@ -9,10 +9,21 @@
 
 int main() {
 
+    // seeding randoms
+    srand(unsigned(time(nullptr)));
+
     // placeholder code
-    Utility::displayTitle();
-    std::cout << "  Hello world!\n";
-    Utility::wait();
+    displayTitle();
+    grid = Grid();
+    grid.setGrid();
+    grid.displayGrid();
+    wait();
+
+    clearScreen();
+    displayTitle();
+    grid.revealGrid();
+    grid.displayGrid();
+    wait();
 
     // exit
     return 0;

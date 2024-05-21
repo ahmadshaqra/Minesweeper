@@ -8,11 +8,11 @@
 #ifndef MINESWEEPER_MAIN_H
 #define MINESWEEPER_MAIN_H
 
-// including modules
-#include <iostream>
-#include <string>
-
 //including classes
 #include <Utility.h>
+#include <Grid.h>
+
+// declaring variables
+Grid grid;
 
 #endif //MINESWEEPER_MAIN_H

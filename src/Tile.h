@@ -8,6 +8,10 @@
 #ifndef MINESWEEPER_TILE_H
 #define MINESWEEPER_TILE_H
 
+// including classes
+#include <vector>
+#include <Constants.h>
+
 class Tile {
 
 private:
@@ -16,6 +20,7 @@ private:
     int value;
     bool isRevealed;
     bool isFlagged;
+    std::vector<Tile*> adjacentTiles;
 
 public:
 
@@ -26,14 +31,18 @@ public:
     // accessor methods
     int getValue();
     bool getIsRevealed();
+    bool getIsFlagged();
+    std::vector<Tile*> getAdjacentTiles();
 
     // mutator methods
     void setValue(int newValue);
-    void setIsRevealed(bool newState);
 
     // class methods
     char getSprite();
     void flag();
+    void reveal();
+    void incrementValue();
+    void addAdjacentTile(Tile* tile);
 };
 
 #endif //MINESWEEPER_TILE_H
