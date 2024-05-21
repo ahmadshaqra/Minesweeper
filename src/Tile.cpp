@@ -66,8 +66,20 @@ void Tile::flag() {
 }
 
 void Tile::reveal() {
-    if (!isFlagged) {
-        isRevealed = true;
+
+    // checks if the tile is flagged or already revealed
+    if (isFlagged || isRevealed) {
+        return;
+    }
+
+    // reveals tile
+    isRevealed = true;
+
+    // reveals all adjacent tiles if the current tile value is 0
+    if (value == 0) {
+        for (Tile* adjacentTile : adjacentTiles) {
+            adjacentTile->reveal();
+        }
     }
 }
 

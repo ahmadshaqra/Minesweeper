@@ -12,19 +12,9 @@ int main() {
     // seeding randoms
     srand(unsigned(time(nullptr)));
 
-    // placeholder code
-    displayTitle();
-    grid = Grid();
-    grid.setGrid();
-    grid.displayGrid();
-    wait();
+    // running game
+    game.run();
 
-    clearScreen();
-    displayTitle();
-    grid.revealGrid();
-    grid.displayGrid();
-    wait();
-
-    // exit
+    // exiting
     return 0;
 }

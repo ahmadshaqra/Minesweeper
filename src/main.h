@@ -8,11 +8,14 @@
 #ifndef MINESWEEPER_MAIN_H
 #define MINESWEEPER_MAIN_H
 
-//including classes
-#include <Utility.h>
-#include <Grid.h>
+// including modules
+#include <cstdlib>
+#include <ctime>
+
+// including classes
+#include <Game.h>
 
 // declaring variables
-Grid grid;
+Game game;
 
 #endif //MINESWEEPER_MAIN_H

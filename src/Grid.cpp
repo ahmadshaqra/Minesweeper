@@ -94,12 +94,6 @@ void Grid::setGrid() {
             minesPlaced++;
         }
     }
-
-    int r = getRandomInteger(0, ROWS-4);
-    int c = getRandomInteger(0, COLUMNS-4);
-    grid[r][c]->flag();
-    grid[r+3][c+3]->flag();
-    grid[r+1][c+2]->flag();
 }
 
 bool Grid::placeMine(int row, int column) {
@@ -133,4 +127,33 @@ void Grid::addAdjacentTile(int row, int column, int xVector, int yVector) {
     if (row + xVector >= 0 && row + xVector < ROWS && column + yVector >= 0 && column + yVector < COLUMNS) {
         grid[row][column]->addAdjacentTile(grid[row + xVector][column + yVector]);
     }
+}
+
+bool Grid::reveal(int row, int column) {
+    if (grid[row][column]->getIsFlagged()) {
+        return false;
+    }
+    grid[row][column]->reveal();
+    if (grid[row][column]->getValue() == -1) {
+        return true;
+    }
+    return false;
+}
+
+void Grid::flag(int row, int column) {
+    grid[row][column]->flag();
+}
+
+bool Grid::checkVictory() {
+
+    // checks if there are any unrevealed tiles that do not contain a mine
+    bool victory = true;
+    for (int row = 0; row < ROWS; row++) {
+        for (int column = 0; column < COLUMNS; column++) {
+            if (!grid[row][column]->getIsRevealed() && grid[row][column]->getValue() != -1) {
+                victory = false;
+            }
+        }
+    }
+    return victory;
 }

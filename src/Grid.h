@@ -10,7 +10,6 @@
 
 // including modules
 #include <iostream>
-#include <string>
 
 // including classes
 #include <Constants.h>
@@ -37,6 +36,9 @@ public:
     bool placeMine(int row, int column);
     void revealGrid();
     void addAdjacentTile(int row, int column, int xVector, int yVector);
+    bool reveal(int row, int column);
+    void flag(int row, int column);
+    bool checkVictory();
 };
 
 #endif //MINESWEEPER_GRID_H

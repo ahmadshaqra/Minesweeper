@@ -10,6 +10,7 @@
 
 // including modules
 #include <iostream>
+#include <string>
 #include <cmath>
 
 // including classes

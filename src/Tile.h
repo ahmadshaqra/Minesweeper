@@ -8,8 +8,10 @@
 #ifndef MINESWEEPER_TILE_H
 #define MINESWEEPER_TILE_H
 
-// including classes
+// including modules
 #include <vector>
+
+// including classes
 #include <Constants.h>
 
 class Tile {
