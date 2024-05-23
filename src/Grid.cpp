@@ -51,6 +51,7 @@ void Grid::displayGrid() {
         // print newline character
         std::cout << '\n';
     }
+    std::cout << '\n';
 }
 
 void Grid::resetGrid() {
@@ -156,4 +157,17 @@ bool Grid::checkVictory() {
         }
     }
     return victory;
+}
+
+bool Grid::checkDefeat() {
+
+    // checks if there are any revealed tiles that contain a mine
+    for (int row = 0; row < ROWS; row++) {
+        for (int column = 0; column < COLUMNS; column++) {
+            if (grid[row][column]->getIsRevealed() && grid[row][column]->getValue() == -1) {
+                return true;
+            }
+        }
+    }
+    return false;
 }

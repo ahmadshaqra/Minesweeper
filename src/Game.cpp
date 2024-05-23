@@ -17,22 +17,21 @@ void Game::run() {
     grid.setGrid();
 
     // game loop
-    bool victory = false;
-    bool defeat = false;
-    while (!victory && !defeat) {
+    bool isGameOver = false;
+    while (!isGameOver) {
         displayGame();
-        defeat = playTurn();
-        victory = grid.checkVictory();
+        isGameOver = playTurn() || grid.checkVictory();
     }
 
     // game over
-    gameOver(victory);
+    gameOver();
 }
 
 void Game::displayGame() {
     clearScreen();
     displayTitle();
     grid.displayGrid();
+    std::cout << LINE;
 }
 
 bool Game::playTurn() {
@@ -49,6 +48,11 @@ bool Game::playTurn() {
 
         // gets user input
         std::string input = getString("  Enter Action (RCA): ");
+
+        // checks if user quit
+        if (input.size() == 1 && toupper(input[0]) == 'Q') {
+            return true;
+        }
 
         // validates input size
         if (input.size() != 3) {
@@ -75,14 +79,26 @@ bool Game::playTurn() {
     return false;
 }
 
-void Game::gameOver(bool victory) {
-    if (victory) {
+void Game::gameOver() {
+
+    // user wins
+    if (grid.checkVictory()) {
         displayGame();
         std::cout << "\n  Congratulations! You cleared the grid!\n";
-    } else {
+
+    // user loses
+    } else if (grid.checkDefeat()){
         grid.revealGrid();
         displayGame();
         std::cout << "\n  Game over, you hit a mine!\n";
+
+    // user quits
+    } else {
+        grid.revealGrid();
+        displayGame();
+        std::cout << "\n  Quitting game . . .\n";
     }
+
+    // wait for user
     wait();
 }

@@ -29,7 +29,7 @@ public:
     void run();
     void displayGame();
     bool playTurn();
-    void gameOver(bool victory);
+    void gameOver();
 };
 
 #endif //MINESWEEPER_GAME_H

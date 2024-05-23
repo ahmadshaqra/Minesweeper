@@ -39,6 +39,7 @@ public:
     bool reveal(int row, int column);
     void flag(int row, int column);
     bool checkVictory();
+    bool checkDefeat();
 };
 
 #endif //MINESWEEPER_GRID_H
