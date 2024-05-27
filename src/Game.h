@@ -14,6 +14,7 @@
 #include <vector>
 
 // including classes
+#include <Constants.h>
 #include <Utility.h>
 #include <Grid.h>
 
