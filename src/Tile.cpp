@@ -38,14 +38,6 @@ std::vector<Tile*> Tile::getAdjacentTiles() {
 }
 
 /**************************************************
-    MUTATOR METHODS
- **************************************************/
-
-void Tile::setValue(int newValue) {
-    value = newValue;
-}
-
-/**************************************************
     CLASS METHODS
  **************************************************/
 
@@ -87,6 +79,10 @@ void Tile::incrementValue() {
     if (value != -1) {
         value++;
     }
+}
+
+void Tile::setMine() {
+    value = -1;
 }
 
 void Tile::addAdjacentTile(Tile* tile) {

@@ -22,5 +22,6 @@ const char REVEALED = '.';
 const char FLAGGED = '~';
 const char MINE = '@';
 const char NULL_TILE = '?';
+const int TILE_POINTS = 10;
 
 #endif //MINESWEEPER_CONSTANTS_H

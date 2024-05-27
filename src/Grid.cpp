@@ -54,6 +54,13 @@ void Grid::displayGrid() {
     std::cout << '\n';
 }
 
+Tile* Grid::getTile(int row, int column) {
+    if (row >= 0 && row < ROWS && column >= 0 && column < COLUMNS) {
+        return grid[row][column];
+    }
+    return nullptr;
+}
+
 void Grid::resetGrid() {
 
     // create all the tiles in the grid
@@ -91,25 +98,20 @@ void Grid::setGrid() {
     while (minesPlaced != MINES) {
         int row = getRandomInteger(0, ROWS - 1);
         int column = getRandomInteger(0, COLUMNS - 1);
-        if (placeMine(row, column)) {
+        if (grid[row][column]->getValue() != -1) {
+            placeMine(row, column);
             minesPlaced++;
         }
     }
 }
 
-bool Grid::placeMine(int row, int column) {
+void Grid::placeMine(int row, int column) {
 
-    // mine already placed on tile
-    if (grid[row][column]->getValue() == -1) {
-        return false;
-    }
-
-    // place mine on tile
-    grid[row][column]->setValue(-1);
+    // places mine on tile then increments value of adjacent tiles
+    grid[row][column]->setMine();
     for (Tile* adjacentTile : grid[row][column]->getAdjacentTiles()) {
         adjacentTile->incrementValue();
     }
-    return true;
 }
 
 void Grid::revealGrid() {
@@ -130,19 +132,16 @@ void Grid::addAdjacentTile(int row, int column, int xVector, int yVector) {
     }
 }
 
-bool Grid::reveal(int row, int column) {
-    if (grid[row][column]->getIsFlagged()) {
-        return false;
+int Grid::getScore() {
+    int score = 0;
+    for (int row = 0; row < ROWS; row++) {
+        for (int column = 0; column < COLUMNS; column++) {
+            if (grid[row][column]->getIsRevealed()) {
+                score += TILE_POINTS;
+            }
+        }
     }
-    grid[row][column]->reveal();
-    if (grid[row][column]->getValue() == -1) {
-        return true;
-    }
-    return false;
-}
-
-void Grid::flag(int row, int column) {
-    grid[row][column]->flag();
+    return score;
 }
 
 bool Grid::checkVictory() {

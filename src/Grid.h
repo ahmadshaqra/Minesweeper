@@ -31,13 +31,13 @@ public:
 
     // class methods
     void displayGrid();
+    Tile* getTile(int row, int column);
     void resetGrid();
     void setGrid();
-    bool placeMine(int row, int column);
+    void placeMine(int row, int column);
     void revealGrid();
     void addAdjacentTile(int row, int column, int xVector, int yVector);
-    bool reveal(int row, int column);
-    void flag(int row, int column);
+    int getScore();
     bool checkVictory();
     bool checkDefeat();
 };

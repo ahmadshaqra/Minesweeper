@@ -11,6 +11,7 @@
 // including modules
 #include <iostream>
 #include <string>
+#include <vector>
 
 // including classes
 #include <Utility.h>
@@ -22,13 +23,20 @@ private:
 
     // class variables
     Grid grid;
+    int score;
+    int flags;
+    bool gameActive;
 
 public:
 
     // class methods
     void run();
     void displayGame();
-    bool playTurn();
+    void displayInfo();
+    std::vector<int> getInput();
+    void playTurn();
+    void reveal(Tile* tile);
+    void flag(Tile* tile);
     void gameOver();
 };
 

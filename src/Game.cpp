@@ -13,14 +13,18 @@
 
 void Game::run() {
 
-    // setup grid
+    // initialises game
     grid.setGrid();
+    score = 0;
+    flags = MINES;
+    gameActive = true;
 
     // game loop
     bool isGameOver = false;
     while (!isGameOver) {
         displayGame();
-        isGameOver = playTurn() || grid.checkVictory();
+        playTurn();
+        isGameOver = grid.checkDefeat() || grid.checkVictory() || !gameActive;
     }
 
     // game over
@@ -31,17 +35,25 @@ void Game::displayGame() {
     clearScreen();
     displayTitle();
     grid.displayGrid();
+    displayInfo();
+}
+
+void Game::displayInfo() {
+    std::cout << LINE;
+    std::cout << getPadding(28 + std::to_string(score).size() + std::to_string(flags).size());
+    std::cout << "Score: " << score << "    Flags Remaining: " << flags << '\n';
     std::cout << LINE;
 }
 
-bool Game::playTurn() {
+std::vector<int> Game::getInput() {
 
     // initialises input variables
     int row;
     int column;
     char action;
+    std::vector<int> userInput;
 
-    // get and validate user input
+    // gets and validate user input
     std::cout << '\n';
     bool inputValid = false;
     while (!inputValid) {
@@ -51,7 +63,10 @@ bool Game::playTurn() {
 
         // checks if user quit
         if (input.size() == 1 && toupper(input[0]) == 'Q') {
-            return true;
+            userInput.push_back(-1);
+            userInput.push_back(-1);
+            userInput.push_back('Q');
+            return userInput;
         }
 
         // validates input size
@@ -70,13 +85,48 @@ bool Game::playTurn() {
         }
     }
 
+    // returns validated user input
+    userInput.push_back(row);
+    userInput.push_back(column);
+    userInput.push_back(action);
+    return userInput;
+}
+
+void Game::playTurn() {
+
+    // gets input
+    std::vector<int> userInput = getInput();
+    int row = userInput[0];
+    int column = userInput[1];
+    char action = userInput[2];
+
     // executes action
+    Tile* tile = grid.getTile(row, column);
     if (action == 'R') {
-        return grid.reveal(row, column);
+        reveal(tile);
     } else if (action == 'F') {
-        grid.flag(row, column);
+        flag(tile);
+    } else if (action == 'Q') {
+        gameActive = false;
     }
-    return false;
+}
+
+void Game::reveal(Tile* tile) {
+    tile->reveal();
+    if (tile->getValue() != -1) {
+        score = grid.getScore();
+    }
+}
+
+void Game::flag(Tile* tile) {
+    if (!tile->getIsRevealed()) {
+        tile->flag();
+        tile->getIsFlagged() ? flags-- : flags++;
+        if (flags < 0) {
+            tile->flag();
+            tile->getIsFlagged() ? flags-- : flags++;
+        }
+    }
 }
 
 void Game::gameOver() {

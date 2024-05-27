@@ -36,14 +36,12 @@ public:
     bool getIsFlagged();
     std::vector<Tile*> getAdjacentTiles();
 
-    // mutator methods
-    void setValue(int newValue);
-
     // class methods
     char getSprite();
     void flag();
     void reveal();
     void incrementValue();
+    void setMine();
     void addAdjacentTile(Tile* tile);
 };
 
