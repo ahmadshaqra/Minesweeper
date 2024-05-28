@@ -35,7 +35,7 @@ public:
     void resetGrid();
     void setGrid();
     void placeMine(int row, int column);
-    void revealGrid();
+    void revealMines();
     void addAdjacentTile(int row, int column, int xVector, int yVector);
     int getScore();
     bool checkVictory();

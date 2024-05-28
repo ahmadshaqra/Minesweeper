@@ -114,12 +114,14 @@ void Grid::placeMine(int row, int column) {
     }
 }
 
-void Grid::revealGrid() {
+void Grid::revealMines() {
 
     // iterate over every tile in the grid and reveal its contents
     for (int row = 0; row < ROWS; row++) {
         for (int column = 0; column < COLUMNS; column++) {
-            grid[row][column]->reveal();
+            if (grid[row][column]->getValue() == -1) {
+                grid[row][column]->reveal();
+            }
         }
     }
 }

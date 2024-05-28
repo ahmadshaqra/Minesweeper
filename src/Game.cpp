@@ -138,13 +138,12 @@ void Game::gameOver() {
 
     // user loses
     } else if (grid.checkDefeat()){
-        grid.revealGrid();
+        grid.revealMines();
         displayGame();
         std::cout << "\n  Game over, you hit a mine!\n";
 
     // user quits
     } else {
-        grid.revealGrid();
         displayGame();
         std::cout << "\n  Quitting game . . .\n";
     }
